@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { DB_URI, NODE_ENV } from '../config/env.js';
+import process from 'node:process';
 
 if (!DB_URI) {
     throw new Error('Please define the DB_URI environment variable inside .env.<development/production>.local');

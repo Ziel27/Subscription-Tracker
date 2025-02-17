@@ -4,7 +4,7 @@ import User from '../models/user.model.js';
 
 import { JWT_SECRET } from '../config/env.js';
 
-export const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     try {
        let token;
     
@@ -27,4 +27,6 @@ export const authMiddleware = async (req, res, next) => {
         }catch (error) {
         return res.status(401).json({ message: 'Not authorized to access this route', error: error.message });
     }
-}
+};
+
+export default authMiddleware;
