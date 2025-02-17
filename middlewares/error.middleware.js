@@ -1,4 +1,4 @@
-import ErrorResponse from '../utils/errorResponse';
+
 
 const errorMiddleware = (err, req, res, next) => {
     try {
@@ -11,13 +11,13 @@ const errorMiddleware = (err, req, res, next) => {
         // Mongoose bad ObjectId
         if (err.name === "CastError") {
             const message = `Resource not found. Invalid: ${err.path}`;
-            error = new ErrorResponse(message, 404);
+            error = new Error(message, 404);
         }
 
         // Mongoose duplicate key
         if (err.code === 11000) {
             const message = "Duplicate field value entered";
-            error = new ErrorResponse(message, 400);
+            error = new Error(message, 400);
         }
 
         // Mongoose validation error
