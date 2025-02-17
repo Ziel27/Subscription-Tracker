@@ -1,10 +1,15 @@
 import { Router } from 'express';
 
+import { authMiddleware } from '../middlewares/auth.middleware.js';
+
+import { getUsers, getUser } from "../controllers/subscription.controller.js";
+
+
 const userRouter = Router();
 
-userRouter.get('/', (req, res) => res.send({ title: 'GET all Users' }));
+userRouter.get('/', getUsers);
 
-userRouter.get('/:id', (req, res) => res.send({ title: 'GET user details' }));
+userRouter.get('/:id',authMiddleware, getUser);
 
 userRouter.post('/', (req, res) => res.send({ title: 'CREATE new user' }));
 
